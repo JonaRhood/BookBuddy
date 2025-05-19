@@ -6,7 +6,7 @@ export default function SearchIcon({ onClick }: SearchIconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="40"
+            width="30"
             viewBox="0 0 169 169"
             fill="none"
             onClick={onClick}

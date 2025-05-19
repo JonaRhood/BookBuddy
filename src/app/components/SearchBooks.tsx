@@ -56,7 +56,7 @@ export default function SearchBooks() {
 
     return (
         <div className="flex flex-col h-full">
-            <div className="sticky top-[57px] w-full z-30 bg-[#b4a491]/50">
+            <div className="sticky top-[57px] w-full z-30 bg-[#b4a491]/50 ">
                 <div className="flex justify-center h-[67px] items-center relative">
                     <div className="divSearchIcon flex border-1 border-stone-400 rounded-full w-[50%] bg-stone-100/90 justify-center hover:bg-stone-100">
                         <select

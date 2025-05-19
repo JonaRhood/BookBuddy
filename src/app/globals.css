@@ -65,6 +65,52 @@ body {
   -webkit-filter: brightness(115%);
 }
 
+.divReadingList {
+  background-color: #57534e;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.125rem;
+  color: white;
+  transition: background-color 0.6s ease-in-out;
+  -webkit-transition: background-color 0.6s ease-in-out;
+  -moz-transition: background-color 0.6s ease-in-out;
+  -ms-transition: background-color 0.6s ease-in-out;
+  -o-transition: background-color 0.6s ease-in-out;
+}
+
+.divReadingList:hover {
+  cursor: pointer;
+  background-color: rgb(229, 74, 74);
+  transition: background-color 0.1s ease-in-out;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  -ms-transition: background-color 0.1s ease-in-out;
+  -o-transition: background-color 0.1s ease-in-out;
+}
+
+.divReadingListSaved {
+  background-color: #4e914c;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.125rem;
+  color: white;
+  transition: background-color 0.6s ease-in-out;
+  -webkit-transition: background-color 0.6s ease-in-out;
+  -moz-transition: background-color 0.6s ease-in-out;
+  -ms-transition: background-color 0.6s ease-in-out;
+  -o-transition: background-color 0.6s ease-in-out;
+}
+
+.divReadingListSaved:hover {
+  cursor: pointer;
+  background-color: #427a40;
+  transition: background-color 0.1s ease-in-out;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out;
+  -ms-transition: background-color 0.1s ease-in-out;
+  -o-transition: background-color 0.1s ease-in-out;
+}
+
 /* Icons */
 .searchIconLink div svg {
   transition: transform 0.6s ease-in-out;
@@ -88,7 +134,6 @@ body {
 }
 
 .heartIconLink div svg {
-  fill: rgba(0, 0, 0, 0);
   transition: fill 0.6s ease-in-out;
   -webkit-transition: fill 0.6s ease-in-out;
   -moz-transition: fill 0.6s ease-in-out;
@@ -97,7 +142,7 @@ body {
 }
 
 .heartIconLink:hover div svg {
-  fill: rgb(255, 124, 124);
+  fill: #ff7c7c;
   transition: fill 0.1s ease-in-out;
   -webkit-transition: fill 0.1s ease-in-out;
   -moz-transition: fill 0.1s ease-in-out;
@@ -114,7 +159,6 @@ body {
     stroke: rgb(225, 0, 0);
   }
 }
-
 
 /* SCROLLBAR */
 /* WebKit: Chrome, Safari, Edge */

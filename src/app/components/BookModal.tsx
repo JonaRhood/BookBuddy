@@ -1,11 +1,8 @@
 import Image from "next/image";
 import { useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { renderCover, renderDetailsModal } from "../utils/utils";
 
-export default function BookModal({ book, onClose }: { book: any; onClose: () => void }) {
-    const pathname = usePathname();
-    const searchPathname = pathname.endsWith('/search');
-    console.log(searchPathname)
+export default function BookModal({ book, type, onClose }: { book: any; type: string; onClose: () => void }) {
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -23,7 +20,7 @@ export default function BookModal({ book, onClose }: { book: any; onClose: () =>
                 <div className="w-[35%] flex justify-center items-center">
                     <div className="flex h-90 w-full shadow-lg relative">
                         <Image
-                            src={searchPathname ? `/api/cover/${book.cover_i}` : `/api/cover/${book.cover_id}`}
+                            src={renderCover(book, type)}
                             alt={book.title}
                             fill
                             loading="eager"
@@ -35,18 +32,12 @@ export default function BookModal({ book, onClose }: { book: any; onClose: () =>
                 <div className="w-[65%] flex flex-col justify-center">
                     <div className="h-80 flex flex-col">
                         <span className="text-2xl text-orange-900 font-bold">{book.title}</span>
-                        <span><strong>Publish year:</strong> {book.first_publish_year}</span>
-                        {searchPathname
-                            ?
-                            <div>
-                                <span className="mb-4"><strong>Author/s:</strong> {book.author_name.map((a: any) => a).join(', ')}</span>
-                            </div>
-                            :
-                            <div>
-                                <span className="mb-4"><strong>Author/s:</strong> {book.authors.map((a: any) => a.name).join(", ")}</span>
-                                <p><strong>Subjects:</strong> {book.subject.slice(0, 20).join(", ")}</p>
-                            </div>
+                        {type !== "saved" &&
+                            <span><strong>Publish year:</strong> {book.first_publish_year}</span>
                         }
+                        <div className="h-full overflow-hidden overflow-y-auto">
+                            {renderDetailsModal(book, type)}
+                        </div>
                     </div>
                 </div>
                 <button
