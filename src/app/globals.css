@@ -12,15 +12,55 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+} */
+
+html {
+  background: #e7e1da;
 }
 
 body {
-  background: var(--background);
+  background: #e7e1da;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Books List */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.divBooksImage {
+  z-index: 0;
+  transition: transform 0.6s ease-in-out, filter 0.6s ease-in-out;
+  -webkit-transition: transform 0.6s ease-in-out, filter 0.6s ease-in-out;
+  -moz-transition: transform 0.6s ease-in-out, filter 0.6s ease-in-out;
+  -ms-transition: transform 0.6s ease-in-out, filter 0.6s ease-in-out;
+  -o-transition: transform 0.6s ease-in-out, filter 0.6s ease-in-out;
+}
+
+.divBooksImage:hover {
+  cursor: pointer;
+  filter: brightness(115%);
+  transform: scale(105%);
+  -webkit-transform: scale(105%);
+  -moz-transform: scale(105%);
+  -ms-transform: scale(105%);
+  -o-transform: scale(105%);
+  transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+  -webkit-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+  -moz-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+  -ms-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+  -o-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+  -webkit-filter: brightness(115%);
 }
