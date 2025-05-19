@@ -27,8 +27,8 @@ body {
   background: #e7e1da;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-y: scroll;
 }
-
 
 /* Books List */
 .scrollbar-hide {
@@ -63,4 +63,73 @@ body {
   -ms-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
   -o-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
   -webkit-filter: brightness(115%);
+}
+
+/* Icons */
+.searchIconLink div svg {
+  transition: transform 0.6s ease-in-out;
+  -webkit-transition: transform 0.6s ease-in-out;
+  -moz-transition: transform 0.6s ease-in-out;
+  -ms-transition: transform 0.6s ease-in-out;
+  -o-transition: transform 0.6s ease-in-out;
+}
+
+.searchIconLink:hover div svg {
+  transform: scale(115%);
+  transition: transform 0.1s ease-in-out;
+  -webkit-transition: transform 0.1s ease-in-out;
+  -moz-transition: transform 0.1s ease-in-out;
+  -ms-transition: transform 0.1s ease-in-out;
+  -o-transition: transform 0.1s ease-in-out;
+  -webkit-transform: scale(115%);
+  -moz-transform: scale(115%);
+  -ms-transform: scale(115%);
+  -o-transform: scale(115%);
+}
+
+.heartIconLink div svg {
+  fill: rgba(0, 0, 0, 0);
+  transition: fill 0.6s ease-in-out;
+  -webkit-transition: fill 0.6s ease-in-out;
+  -moz-transition: fill 0.6s ease-in-out;
+  -ms-transition: fill 0.6s ease-in-out;
+  -o-transition: fill 0.6s ease-in-out;
+}
+
+.heartIconLink:hover div svg {
+  fill: rgb(255, 124, 124);
+  transition: fill 0.1s ease-in-out;
+  -webkit-transition: fill 0.1s ease-in-out;
+  -moz-transition: fill 0.1s ease-in-out;
+  -ms-transition: fill 0.1s ease-in-out;
+  -o-transition: fill 0.1s ease-in-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .xIcon:hover {
+    cursor: pointer;
+  }
+
+  .xIcon:hover path {
+    stroke: rgb(225, 0, 0);
+  }
+}
+
+
+/* SCROLLBAR */
+/* WebKit: Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #aa9887;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #837360;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4b657e;
 }

@@ -1,7 +1,6 @@
 import BooksList from "./components/BooksList";
 
 export default async function Home() {
-
   const res = await fetch('https://openlibrary.org/subjects/love.json?limit=48');
   const { works } = await res.json();
   
@@ -9,7 +8,7 @@ export default async function Home() {
 
   return (
     <div>
-      <BooksList works={works} />
+      <BooksList works={works} type="home" />
     </div>
   );
 }

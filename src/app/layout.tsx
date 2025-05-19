@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
 import { PreloadResources } from "./preload-resources";
+import Header from "./components/Header";
+import NavBar from "./components/NavBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "BookBuddy",
   description: "BookBuddy is a fun, fast-growing startup on a mission to help people discover books they'll love and keep track of what they want to read. Whether it’s thrillers, graphic novels, or sci-fi epics, BookBuddy gives users a simple way to explore and save books to their reading list.",
+   icons: {
+    icon: './logo.svg',
+  },
 };
 
 export default async function RootLayout({
@@ -24,10 +28,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  const res = await fetch('https://openlibrary.org/subjects/love.json?limit=48');
-  const { works } = await res.json();
-  
   return (
     <html lang="en">
       <PreloadResources />
@@ -39,6 +39,9 @@ export default async function RootLayout({
         </div>
         <div className="pt-26">
           {children}
+        </div>
+        <div>
+          <NavBar />
         </div>
       </body>
     </html>

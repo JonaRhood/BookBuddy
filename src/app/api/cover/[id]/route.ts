@@ -1,8 +1,7 @@
-// app/api/cover/[id]/route.ts
 import { NextResponse } from 'next/server';
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function GET(_: Request, { params }: any) {
+  const id = params.id;
 
   try {
     const coverUrl = `https://covers.openlibrary.org/b/id/${id}-L.jpg`;
@@ -14,14 +13,12 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 
     const imageBuffer = await res.arrayBuffer();
 
-    const response = new NextResponse(imageBuffer, {
+    return new NextResponse(imageBuffer, {
       headers: {
         'Content-Type': 'image/jpeg',
         'Cache-Control': 'public, max-age=31536000, immutable',
       },
     });
-
-    return response;
   } catch (err) {
     return new NextResponse('Error fetching image', { status: 500 });
   }
