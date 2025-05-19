@@ -24,18 +24,22 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const res = await fetch('https://openlibrary.org/subjects/love.json?limit=48');
+  const { works } = await res.json();
+  
   return (
     <html lang="en">
       <PreloadResources />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          <div className="fixed w-full z-10">
-            <Header />
-          </div>
-          <div className="pt-26">
-            {children}
-          </div>
+        <div className="fixed w-full z-10">
+          <Header />
+        </div>
+        <div className="pt-26">
+          {children}
+        </div>
       </body>
     </html>
   );

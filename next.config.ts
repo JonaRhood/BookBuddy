@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'openlibrary.org',
+        hostname: 'covers.openlibrary.org',
         port: '',
         pathname: '/**',
       },
