@@ -11,8 +11,10 @@ export default function SearchBooks() {
     const [books, setBooks] = useState<any[]>([])
     const [error, setError] = useState<string | null>(null)
     const inputRef = useRef<HTMLInputElement>(null)
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const handleSearch = async () => {
+        inputRef.current?.blur();
         const trimmed = query.trim()
         if (!trimmed) {
             setError("Please enter a search term.")
@@ -23,6 +25,7 @@ export default function SearchBooks() {
         setError(null)
 
         try {
+            setIsLoading(true)
             const res = await fetch(
                 `https://openlibrary.org/search.json?${searchType}=${trimmed}&sort=new&limit=100`
             )
@@ -36,6 +39,8 @@ export default function SearchBooks() {
                 setBooks(withCovers)
                 setError(null)
             }
+
+            setIsLoading(false)
         } catch {
             setError("Something went wrong. Please try again.")
         }
@@ -55,13 +60,13 @@ export default function SearchBooks() {
 
     return (
         <div className="flex flex-col h-full">
-            <div className="sticky top-[57px] w-full z-30 bg-[#b4a491]/50">
+            <div className="fixed top-[57px] w-full z-30 bg-[#b4a491]/50">
                 <form
                     onSubmit={handleSubmit}
                     className="flex justify-center h-[67px] flex-col items-center relative"
                     data-testid="form-search"
                 >
-                    <div className="relative w-[50%]">
+                    <div className="divSearchIconParent relative w-[700px]">
                         <div className="divSearchIcon flex border border-stone-400 rounded-full bg-stone-100/90 justify-center hover:bg-stone-100">
                             <select
                                 value={searchType}
@@ -121,7 +126,13 @@ export default function SearchBooks() {
             </div>
 
             <div className="mt-10">
-                <BooksList works={books} type={"author"} />
+                {!isLoading ? (
+                    <BooksList works={books} type="author" />
+                ) : (
+                    <div className="flex justify-center">
+                        <p className="text-gray-600 mt-4 w-full text-center loaderSpinner"></p>
+                    </div>
+                )}
             </div>
         </div>
     )
