@@ -1,31 +1,9 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import { renderCover, renderDetailsModal } from "../utils/utils";
-import { getScrollbarWidth } from "../utils/utils";
 
 export default function BookModal({ book, type, onClose }: { book: any; type: string; onClose: () => void }) {
-
-    // useEffect(() => {
-    //     const scrollY = window.scrollY;
-
-    //     document.body.style.position = "fixed";
-    //     document.body.style.top = `-${scrollY}px`;
-
-    //     return () => {
-    //         // IMPORTANTE: lee el scrollY antes de eliminar el top
-    //         const y = document.body.style.top;
-    //         document.body.style.position = "";
-    //         document.body.style.top = "";
-
-    //         // Solo si `y` tiene valor
-    //         if (y) {
-    //             const scroll = parseInt(y || "0") * -1;
-    //             window.scrollTo(0, scroll);
-    //         }
-    //     };
-    // }, []);
-
-
+    
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === "Escape") {

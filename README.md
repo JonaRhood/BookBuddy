@@ -16,21 +16,28 @@ Welcome to **BookBuddy**, a simple and responsive React app that helps users dis
 1. [Project Overview](#project-overview)
 2. [Data Management](#data)
 3. [Installation](#installation)
-4. [Technologies Used](#tech)
 4. [Testing](#testing)
+5. [Technologies Used](#tech)
 5. [Contact](#contact)
 
 ## 🚀 &nbsp; <a id="project-overview">Project Overview</a>
 
-- **Search for Books**: Quickly find books by typing a title or author’s name. Results are fetched in real time using the Open Library API.
+- **Search for Books**: Quickly find books by typing a title or author’s name. Results are fetched in real time using the Open Library API and SSR in Next.js.
 
 - **Browse Results**: Display a clean list of books with cover images, titles, and author names.
 
-- **View Details**: Click on any book to see more information (like subjects and publication year) displayed in a modal for a smooth and focused experience.
+- **Infinite Scrolling**: Load more results seamlessly as you scroll down, for a smooth browsing experience.
+
+- **View Details**: Click on any book to see more information (like subjects and publication year) displayed in a modal for a focused experience.
 
 - **Save Favorites**: Easily add books you like to your personal reading list.
 
-- **Persist Data**: Your reading list is stored with `localStorage` so it stays saved between sessions.
+- **Persist Data**: Your reading list is stored with `localStorage`, so it stays saved between sessions.
+
+- **Responsive Design**: Responsive layout that works across devices.
+
+- **Tested**: Key components and interactions are covered by tests using Jest and React Testing Library, ensuring reliability and maintainability.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -58,8 +65,11 @@ cd BookBuddy
 # Install dependencies
 npm install
 
-# Run the development server and follow the instructions displayed in the terminal
-npm run dev
+# Build the production version of the app
+npx next build
+
+# Start the production server
+npx next start
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

@@ -3,7 +3,7 @@ export const renderCover = (post: any, type: string) => {
         return `/api/cover/${post.cover_id}`
     }
 
-    if ((type === "author") && "cover_i" in post) {
+    if ((type === "author" || type === "title") && "cover_i" in post) {
         return `/api/cover/${post.cover_i}`
     }
 
@@ -21,7 +21,7 @@ export const renderAuthors = (post: any, type: string) => {
         ))
     }
 
-    if (type === "author" && "author_name" in post) {
+    if (type === "author" || type === "title") {
         return <span>{post.author_name.join(", ")}</span>
     }
 
@@ -42,7 +42,7 @@ export const renderDetailsModal = (book: any, type: string) => {
         )
     }
 
-    if (type === "author" && "author_name" in book) {
+    if (type === "author" || type === "title") {
         return <span className="mb-4"><strong>Author/s:</strong> {book.author_name.map((a: any) => a).join(', ')}</span>
     }
 
@@ -57,20 +57,35 @@ export const renderDetailsModal = (book: any, type: string) => {
     return <span>No authors available</span>
 }
 
-export const getScrollbarWidth = () => {
-    const outer = document.createElement('div');
-    outer.style.visibility = 'hidden';
-    outer.style.overflow = 'scroll';
-    
-    // @ts-ignore
-    outer.style.msOverflowStyle = 'scrollbar';
-    document.body.appendChild(outer);
+export async function fetchMoreBooks({
+    page,
+    type,
+    query,
+}: {
+    page: number
+    type: string
+    query?: string
+}): Promise<any[]> {
+    const offset = page * 48;
 
-    const scrollbarWidth = outer.offsetWidth - outer.clientWidth;
+    try {
+        if (type === "home") {
+            const res = await fetch(`https://openlibrary.org/subjects/history.json?limit=48&offset=${offset}`);
+            const data = await res.json();
+            return data.works;
+        }
 
-    if (outer.parentNode) {
-        outer.parentNode.removeChild(outer);
+        if ((type === "author" || type === "title") && query) {
+            const res = await fetch(
+                `https://openlibrary.org/search.json?${type}=${query}&sort=new&limit=48&offset=${offset}`
+            );
+            const { docs } = await res.json();
+            return docs.filter((book: any) => book.cover_i); // solo libros con portada
+        }
+
+        return [];
+    } catch (err) {
+        console.error("Fetch error:", err);
+        return [];
     }
-
-    return scrollbarWidth;
-};
+}

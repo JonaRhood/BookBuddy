@@ -43,6 +43,7 @@ export default function SearchBooks() {
             setIsLoading(false)
         } catch {
             setError("Something went wrong. Please try again.")
+            setIsLoading(false);
         }
     }
 
@@ -127,7 +128,7 @@ export default function SearchBooks() {
 
             <div className="mt-10">
                 {!isLoading ? (
-                    <BooksList works={books} type="author" />
+                    <BooksList works={books} type={searchType} query={query} />
                 ) : (
                     <div className="flex justify-center">
                         <p className="text-gray-600 mt-4 w-full text-center loaderSpinner"></p>

@@ -43,7 +43,7 @@ export default function ReadingListPage() {
                 Your Reading List
             </h1>
             {!isLoading ? (
-                <BooksList works={savedBooks} type="saved" />
+                <BooksList works={savedBooks} type="saved" query={""} />
             ) : (
                 <div className="flex justify-center">
                     <p className="text-gray-600 w-full text-center loaderSpinner"></p>
