@@ -12,14 +12,14 @@ export default function BooksList({ works, type }: { works: any[], type: string 
 
     return (
         <div className="mb-12" data-testid="books-list">
-            <ul className=" flex w-full gap-10 flex-wrap justify-center px-6">
+            <ul className=" flex w-full sm:gap-10 gap-5 flex-wrap sm:justify-center justify-around px-6">
                 {works.map((post: any, idx: number) => (
                     <li
                         key={post.key}
-                        className="flex flex-col w-50"
+                        className="flex flex-col sm:w-50 w-40"
                     >
                         <div
-                            className="divBooksImage h-80 flex mb-2 shadow-lg bg-[#C3B29E]/30 relative"
+                            className="divBooksImage sm:h-80 h-65 flex mb-2 shadow-lg bg-[#C3B29E]/30 relative"
                             onClick={() => {
                                 setSelectedBook(post);
                                 setIsModalOpen(true);

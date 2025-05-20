@@ -4,6 +4,7 @@ import "./globals.css";
 import { PreloadResources } from "./preload-resources";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
+import NextTopLoader from 'nextjs-toploader';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,7 +38,8 @@ export default async function RootLayout({
         <div className="fixed w-full z-10">
           <Header />
         </div>
-        <div className="pt-26">
+        <div className="pt-26 overflow-y-scroll h-screen">
+          <NextTopLoader showSpinner={false} color="#00cc00" />
           {children}
         </div>
         <div>

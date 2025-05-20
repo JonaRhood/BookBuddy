@@ -56,3 +56,21 @@ export const renderDetailsModal = (book: any, type: string) => {
 
     return <span>No authors available</span>
 }
+
+export const getScrollbarWidth = () => {
+    const outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.overflow = 'scroll';
+    
+    // @ts-ignore
+    outer.style.msOverflowStyle = 'scrollbar';
+    document.body.appendChild(outer);
+
+    const scrollbarWidth = outer.offsetWidth - outer.clientWidth;
+
+    if (outer.parentNode) {
+        outer.parentNode.removeChild(outer);
+    }
+
+    return scrollbarWidth;
+};

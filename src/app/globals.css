@@ -27,7 +27,7 @@ body {
   background: #e7e1da;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 /* Books List */
@@ -52,21 +52,25 @@ body {
   -o-transition: transform 0.6s ease-in-out, filter 0.6s ease-in-out;
 }
 
-.divBooksImage:hover {
-  cursor: pointer;
-  filter: brightness(115%);
-  transform: scale(105%);
-  -webkit-transform: scale(105%);
-  -moz-transform: scale(105%);
-  -ms-transform: scale(105%);
-  -o-transform: scale(105%);
-  transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
-  -webkit-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
-  -moz-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
-  -ms-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
-  -o-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
-  -webkit-filter: brightness(115%);
+@media (hover: hover) and (pointer: fine) {
+  .divBooksImage:hover {
+    cursor: pointer;
+    filter: brightness(115%);
+    transform: scale(105%);
+    -webkit-transform: scale(105%);
+    -moz-transform: scale(105%);
+    -ms-transform: scale(105%);
+    -o-transform: scale(105%);
+    transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+    -webkit-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+    -moz-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+    -ms-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+    -o-transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+    -webkit-filter: brightness(115%);
+  }
 }
+
+
 
 .divModalImage {
   background-image: url("../../public/image-error.svg");
@@ -87,15 +91,18 @@ body {
   -o-transition: background-color 0.6s ease-in-out;
 }
 
-.divReadingList:hover {
-  cursor: pointer;
-  background-color: rgb(229, 74, 74);
-  transition: background-color 0.1s ease-in-out;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  -ms-transition: background-color 0.1s ease-in-out;
-  -o-transition: background-color 0.1s ease-in-out;
+@media (hover: hover) and (pointer: fine) {
+  .divReadingList:hover {
+    cursor: pointer;
+    background-color: rgb(229, 74, 74);
+    transition: background-color 0.1s ease-in-out;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    -ms-transition: background-color 0.1s ease-in-out;
+    -o-transition: background-color 0.1s ease-in-out;
+  }
 }
+
 
 .divReadingListSaved {
   background-color: #4e914c;
@@ -110,14 +117,17 @@ body {
   -o-transition: background-color 0.6s ease-in-out;
 }
 
-.divReadingListSaved:hover {
-  cursor: pointer;
-  background-color: #427a40;
-  transition: background-color 0.1s ease-in-out;
-  -webkit-transition: background-color 0.1s ease-in-out;
-  -moz-transition: background-color 0.1s ease-in-out;
-  -ms-transition: background-color 0.1s ease-in-out;
-  -o-transition: background-color 0.1s ease-in-out;
+
+@media (hover: hover) and (pointer: fine) {
+  .divReadingListSaved:hover {
+    cursor: pointer;
+    background-color: #427a40;
+    transition: background-color 0.1s ease-in-out;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    -ms-transition: background-color 0.1s ease-in-out;
+    -o-transition: background-color 0.1s ease-in-out;
+  }
 }
 
 /* Icons */
@@ -129,17 +139,19 @@ body {
   -o-transition: transform 0.6s ease-in-out;
 }
 
-.searchIconLink:hover div svg {
-  transform: scale(115%);
-  transition: transform 0.1s ease-in-out;
-  -webkit-transition: transform 0.1s ease-in-out;
-  -moz-transition: transform 0.1s ease-in-out;
-  -ms-transition: transform 0.1s ease-in-out;
-  -o-transition: transform 0.1s ease-in-out;
-  -webkit-transform: scale(115%);
-  -moz-transform: scale(115%);
-  -ms-transform: scale(115%);
-  -o-transform: scale(115%);
+@media (hover: hover) and (pointer: fine) {
+  .searchIconLink:hover div svg {
+    transform: scale(115%);
+    transition: transform 0.1s ease-in-out;
+    -webkit-transition: transform 0.1s ease-in-out;
+    -moz-transition: transform 0.1s ease-in-out;
+    -ms-transition: transform 0.1s ease-in-out;
+    -o-transition: transform 0.1s ease-in-out;
+    -webkit-transform: scale(115%);
+    -moz-transform: scale(115%);
+    -ms-transform: scale(115%);
+    -o-transform: scale(115%);
+  }
 }
 
 .heartIconLink div svg {
@@ -150,16 +162,17 @@ body {
   -o-transition: fill 0.6s ease-in-out;
 }
 
-.heartIconLink:hover div svg {
-  fill: #ff7c7c;
-  transition: fill 0.1s ease-in-out;
-  -webkit-transition: fill 0.1s ease-in-out;
-  -moz-transition: fill 0.1s ease-in-out;
-  -ms-transition: fill 0.1s ease-in-out;
-  -o-transition: fill 0.1s ease-in-out;
-}
 
 @media (hover: hover) and (pointer: fine) {
+  .heartIconLink:hover div svg {
+    fill: #ff7c7c;
+    transition: fill 0.1s ease-in-out;
+    -webkit-transition: fill 0.1s ease-in-out;
+    -moz-transition: fill 0.1s ease-in-out;
+    -ms-transition: fill 0.1s ease-in-out;
+    -o-transition: fill 0.1s ease-in-out;
+  }
+
   .xIcon:hover {
     cursor: pointer;
   }
@@ -167,6 +180,28 @@ body {
   .xIcon:hover path {
     stroke: rgb(225, 0, 0);
   }
+}
+
+.searchIconLink {
+  border-radius: 999px;
+  place-self: center;
+  -webkit-tap-highlight-color: rgba(0, 115, 255, 0.5);
+  touch-action: manipulation;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  -ms-border-radius: 999px;
+  -o-border-radius: 999px;
+}
+
+.heartIconLink {
+  border-radius: 999px;
+  place-self: center;
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0.5);
+  touch-action: manipulation;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  -ms-border-radius: 999px;
+  -o-border-radius: 999px;
 }
 
 /* SCROLLBAR */
@@ -184,4 +219,43 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #4b657e;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 855px) {
+  .divModalParent {
+    height: 100%;
+  }
+
+  .divModal {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+  }
+
+  .divModalImageParent {
+    margin-top: 120px;
+  }
+
+  .divModalImage {
+    margin-bottom: 30px;
+  }
+
+  .xIconModal {
+    position: fixed;
+    margin-top: 80px;
+    font-size: 2rem;
+  }
+
+  .detailsDivParent {
+    height: 100%;
+    margin-bottom: 50px;
+  }
+
+  .detailsDiv {
+    overflow-y: auto;
+    overflow: visible;
+  }
 }
