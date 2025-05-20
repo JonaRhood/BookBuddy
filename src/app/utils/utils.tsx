@@ -11,7 +11,7 @@ export const renderCover = (post: any, type: string) => {
         return `/api/cover/${post.covers[0]}`
     }
 
-    return "./logo.svg"
+    return "./image-error.svg"
 }
 
 export const renderAuthors = (post: any, type: string) => {

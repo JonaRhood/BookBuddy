@@ -3,7 +3,6 @@ import { usePathname } from "next/navigation"
 export default function HeartIcon() {
     const pathname = usePathname();
     const readingListPathname = pathname.endsWith('/reading-list');
-    console.log(readingListPathname)
 
     return (
         <svg

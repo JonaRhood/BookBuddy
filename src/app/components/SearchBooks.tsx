@@ -1,99 +1,127 @@
-// app/components/SearchPatients.tsx
 "use client"
 
-import { useState, useEffect, useRef } from "react";
-import SearchIcon from "../utils/icons/SearchIcon";
-import XIcon from "../utils/icons/XIcon";
-import BooksList from "./BooksList";
+import { useState, useRef } from "react"
+import SearchIcon from "../utils/icons/SearchIcon"
+import XIcon from "../utils/icons/XIcon"
+import BooksList from "./BooksList"
 
 export default function SearchBooks() {
-    const [searchType, setSearchType] = useState<"author" | "title">("author");
-    const [inputValue, setInputValue] = useState<any[]>([]);
-    const [iconXOn, setIconXOn] = useState<boolean>(false);
-    const inputRef = useRef<HTMLInputElement>(null);
+    const [searchType, setSearchType] = useState<"author" | "title">("author")
+    const [query, setQuery] = useState("")
+    const [books, setBooks] = useState<any[]>([])
+    const [error, setError] = useState<string | null>(null)
+    const inputRef = useRef<HTMLInputElement>(null)
 
-    useEffect(() => {
-        console.log(searchType)
-    }, [searchType])
-
-    const fetchData = async (value: string) => {
-        const res = await fetch(`https://openlibrary.org/search.json?${searchType}=${value}&sort=new&limit=100`);
-        const { docs } = await res.json();
-        const booksWithCover = docs.filter((book: any) => book.cover_i);
-        setInputValue(booksWithCover);
-    };
-
-
-    const inputSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        const value = (e.target as HTMLInputElement).value;
-        if (e.key === "Enter") {
-            e.preventDefault();
-            inputRef.current?.blur();
-            if (value.length === 0) {
-                console.log(value)
-                setInputValue([]);
-                return;
-            } else {
-                fetchData(value)
-                return;
-            }
+    const handleSearch = async () => {
+        const trimmed = query.trim()
+        if (!trimmed) {
+            setError("Please enter a search term.")
+            setBooks([])
+            return
         }
-        if (e.key === "Backspace" && value.length <= 1) {
-            setIconXOn(false);
-        } else {
-            setIconXOn(true);
+
+        setError(null)
+
+        try {
+            const res = await fetch(
+                `https://openlibrary.org/search.json?${searchType}=${trimmed}&sort=new&limit=100`
+            )
+            const { docs } = await res.json()
+            const withCovers = docs.filter((book: any) => book.cover_i)
+
+            if (withCovers.length === 0) {
+                setError("No results found for your search.")
+                setBooks([])
+            } else {
+                setBooks(withCovers)
+                setError(null)
+            }
+        } catch {
+            setError("Something went wrong. Please try again.")
         }
     }
 
-    const handleXIcon = () => {
-        if (inputRef.current) {
-            inputRef.current.value = "";
-            inputRef.current.blur();
-        }
-        setIconXOn(false);
-        setInputValue([]);
+    const handleClear = () => {
+        setQuery("")
+        setBooks([])
+        setError(null)
+        inputRef.current?.focus()
+    }
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        handleSearch()
     }
 
     return (
         <div className="flex flex-col h-full">
-            <div className="sticky top-[57px] w-full z-30 bg-[#b4a491]/50 ">
-                <div className="flex justify-center h-[67px] items-center relative">
-                    <div className="divSearchIcon flex border-1 border-stone-400 rounded-full w-[50%] bg-stone-100/90 justify-center hover:bg-stone-100">
-                        <select
-                            value={searchType}
-                            onChange={(e) => setSearchType(e.target.value as "author" | "title")}
-                            className="rounded-l-full bg-stone-200 text-sm px-2 border-r border-stone-400 focus:outline-none"
-                        >
-                            <option value="author">Author</option>
-                            <option value="title">Title</option>
-                        </select>
+            <div className="sticky top-[57px] w-full z-30 bg-[#b4a491]/50">
+                <form
+                    onSubmit={handleSubmit}
+                    className="flex justify-center h-[67px] flex-col items-center relative"
+                    data-testid="form-search"
+                >
+                    <div className="relative w-[50%]">
+                        <div className="divSearchIcon flex border border-stone-400 rounded-full bg-stone-100/90 justify-center hover:bg-stone-100">
+                            <select
+                                value={searchType}
+                                onChange={(e) => setSearchType(e.target.value as "author" | "title")}
+                                className="rounded-l-full bg-stone-200 text-sm px-2 border-r border-stone-400 focus:outline-none"
+                                data-testid="select-search"
+                            >
+                                <option value="author">Author</option>
+                                <option value="title">Title</option>
+                            </select>
 
-                        <div className="items-center flex h-full">
-                            <div className=" py-1 flex h-[34px]">
-                                <SearchIcon onClick={() => inputRef.current?.focus()} />
-                            </div>
-                        </div>
-                        <input
-                            ref={inputRef}
-                            className="w-[92%] p-1 focus:outline-none"
-                            placeholder={`Search book by ${searchType === "author" ? "Author" : "Title"}`}
-                            onKeyDown={(e) => inputSearch(e)}
-                        ></input>
-                        <div className="flex h-full items-center">
-                            <div className="flex justify-center h-[34px] w-[50px] hover:cursor-text">
+                            <div className="items-center flex h-full px-1">
                                 <div
-                                    className={`xIcon ${iconXOn ? 'flex' : 'hidden'} w-[20px] py-2`}
-                                    onClick={() => handleXIcon()}
+                                    className="flex h-[34px] cursor-pointer p-[4px]"
+                                    onClick={(e) => {
+                                        handleSubmit(e);
+                                        inputRef.current?.focus();
+                                    }}
                                 >
-                                    <XIcon onClick={() => inputRef.current?.focus()} />
+                                    <SearchIcon />
                                 </div>
+                            </div>
+
+                            <input
+                                ref={inputRef}
+                                className="w-[92%] p-1 focus:outline-none bg-transparent"
+                                placeholder={`Search book by ${searchType}`}
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)}
+                                data-testid="input-search"
+                            />
+
+                            <div className="flex h-full items-center pr-2">
+                                {query && (
+                                    <div
+                                        className="xIcon flex justify-center h-[34px] p-[2px] mr-1 w-[20px] cursor-pointer"
+                                        onClick={handleClear}
+                                    >
+                                        <XIcon />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div className="absolute left-0 w-full translate-y-8 flex text-center">
+                        {error && (
+                            <p
+                                className="text-red-700 bg-[#cec3b6] p-2 w-full text-sm mt-1"
+                                data-testid="error-search"
+                            >
+                                {error}
+                            </p>
+                        )}
+                        {!error && <div className="h-[20px]"></div>}
+                    </div>
+                </form>
             </div>
+
             <div className="mt-10">
-                <BooksList works={inputValue} type={searchType} />
+                <BooksList works={books} type={"author"} />
             </div>
         </div>
     )

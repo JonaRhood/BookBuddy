@@ -11,7 +11,7 @@ export default function BooksList({ works, type }: { works: any[], type: string 
     const [selectedBook, setSelectedBook] = useState<any>(null);
 
     return (
-        <div>
+        <div className="mb-12" data-testid="books-list">
             <ul className=" flex w-full gap-10 flex-wrap justify-center px-6">
                 {works.map((post: any, idx: number) => (
                     <li
@@ -34,6 +34,7 @@ export default function BooksList({ works, type }: { works: any[], type: string 
                                 decoding="async"
                                 fetchPriority={idx < 15 ? "high" : "low"}
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                onError={(e) => e.currentTarget.className = "hidden"}
                             />
                         </div>
                         <span

@@ -17,6 +17,7 @@ Welcome to **BookBuddy**, a simple and responsive React app that helps users dis
 2. [Data Management](#data)
 3. [Installation](#installation)
 4. [Technologies Used](#tech)
+4. [Testing](#testing)
 5. [Contact](#contact)
 
 ## 🚀 &nbsp; <a id="project-overview">Project Overview</a>
@@ -58,8 +59,21 @@ cd BookBuddy
 npm install
 
 # Run the development server and follow the instructions displayed in the terminal
-npm next dev
+npm run dev
 ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🧪 &nbsp; <a id="testing">Testing</a>
+
+```bash
+# Make sure dependencies are installed
+npm install
+
+# Run all tests using Jest
+npm run test
+```
+- _Tests can be found in the [test folder](./test/) located in the root of the project._
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

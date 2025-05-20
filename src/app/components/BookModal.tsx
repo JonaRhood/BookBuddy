@@ -18,7 +18,7 @@ export default function BookModal({ book, type, onClose }: { book: any; type: st
         <div className="fixed top-0 left-0 w-full h-[100svh] bg-white/0 z-1 flex justify-center items-center">
             <div className="bg-stone-100 rounded-xl px-10 gap-4 w-[800px] h-[450px] flex relative border-1 border-stone-400 shadow-2xl">
                 <div className="w-[35%] flex justify-center items-center">
-                    <div className="flex h-90 w-full shadow-lg relative">
+                    <div className="divModalImage flex h-90 w-full shadow-lg relative  bg-[#C3B29E]/30 ">
                         <Image
                             src={renderCover(book, type)}
                             alt={book.title}
@@ -26,6 +26,7 @@ export default function BookModal({ book, type, onClose }: { book: any; type: st
                             loading="eager"
                             priority
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            onError={(e) => e.currentTarget.className = "hidden"}
                         />
                     </div>
                 </div>

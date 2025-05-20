@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server';
 
-export async function GET(_: Request, { params }: any) {
-  const id = params.id;
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params
+
 
   try {
     const coverUrl = `https://covers.openlibrary.org/b/id/${id}-L.jpg`;
